@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.AddProductPopupPage"
+             BackgroundColor="#80000000">
+    <!-- Полупрозрачный черный фон -->
+
+    <Frame HorizontalOptions="Center" 
+           VerticalOptions="Center"
+           WidthRequest="300"
+           Padding="20"
+           CornerRadius="15"
+           BackgroundColor="White"
+           BorderColor="#E0E0E0">
+
+        <VerticalStackLayout Spacing="15">
+            <Label Text="Добавить продукт" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"
+                   TextColor="#212121"/>
+
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry x:Name="NameEntry" 
+           Grid.Column="0"
+           Placeholder="Название"
+           TextColor="#212121"
+           PlaceholderColor="#9E9E9E"/>
+
+                <Button Grid.Column="1" 
+            Text="🧠"
+            Clicked="OnAutoFillClicked"
+            BackgroundColor="#E0E0E0"
+            TextColor="#212121"
+            WidthRequest="60"
+            CornerRadius="5"
+            FontSize="16"/>
+            </Grid>
+
+            <Entry x:Name="CaloriesEntry" 
+                   Placeholder="Калорийность" 
+                   Keyboard="Numeric"
+                   TextColor="#212121"
+                   PlaceholderColor="#9E9E9E"/>
+
+            <Entry x:Name="ProteinsEntry" 
+                   Placeholder="Белки (г)" 
+                   Keyboard="Numeric"
+                   TextColor="#212121"
+                   PlaceholderColor="#9E9E9E"/>
+
+            <Entry x:Name="FatsEntry" 
+                   Placeholder="Жиры (г)" 
+                   Keyboard="Numeric"
+                   TextColor="#212121"
+                   PlaceholderColor="#9E9E9E"/>
+
+            <Entry x:Name="CarbsEntry" 
+                   Placeholder="Углеводы (г)" 
+                   Keyboard="Numeric"
+                   TextColor="#212121"
+                   PlaceholderColor="#9E9E9E"/>
+
+            <Entry x:Name="WeightEntry" 
+                   Placeholder="Вес (г)" 
+                   Keyboard="Numeric"
+                   TextColor="#212121"
+                   PlaceholderColor="#9E9E9E"/>
+            
+            <Picker x:Name="CategoryPicker" 
+                    TextColor="#212121">
+                <Picker.Items>
+                    <x:String>Без категории</x:String>
+                    <x:String>Мясо</x:String>
+                    <x:String>Молочные продукты</x:String>
+                    <x:String>Зерновые</x:String>
+                    <x:String>Овощи</x:String>
+                    <x:String>Фрукты</x:String>
+                    <x:String>Бобовые</x:String>
+                    <x:String>Яйца</x:String>
+                    <x:String>Рыба</x:String>
+                    <x:String>Масла</x:String>
+                    <x:String>Сладости</x:String>
+                </Picker.Items>
+            </Picker>
+
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Grid.Column="0" 
+                        Text="Отмена" 
+                        Clicked="OnCancelClicked" 
+                        BackgroundColor="#F5F5F5"
+                        TextColor="#212121"
+                        CornerRadius="5"/>
+
+                <Button Grid.Column="1" 
+                        Text="Добавить" 
+                        Clicked="OnAddClicked" 
+                        BackgroundColor="#388E3C"
+                        TextColor="White"
+                        CornerRadius="5"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Frame>
+</ContentPage>

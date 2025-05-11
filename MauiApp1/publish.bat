@@ -1,0 +1,1 @@
+dotnet publish -f net8.0-android34.0 -p:AndroidSdkDirectory=c:\work\android-sdk -p:JavaSdkDirectory="C:\Program Files\Java\jdk-17"

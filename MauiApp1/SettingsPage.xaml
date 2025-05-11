@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.SettingsPage"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Заголовок -->
+            <Label 
+                Text="Настройки профиля"
+                FontSize="20"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" 
+                TextColor="Black"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Api URL" FontAttributes="Bold" TextColor="Black"/>
+                <Entry 
+                    Keyboard="Url"
+                    x:Name="ApiUrlEntry"
+                    BackgroundColor="White"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Текущий вес (кг)" FontAttributes="Bold" TextColor="Black"/>
+                <Entry 
+                    Placeholder="Введите ваш вес"
+                    Keyboard="Numeric"
+                    x:Name="WeightEntry"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    PlaceholderColor="Gray"
+                    Unfocused="OnEntryValidationNeeded"/>
+            </VerticalStackLayout>
+
+            <!-- Рост -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Рост (см)" FontAttributes="Bold" TextColor="Black"/>
+                <Entry 
+                    Placeholder="Введите ваш рост"
+                    Keyboard="Numeric"
+                    x:Name="HeightEntry"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    PlaceholderColor="Gray"
+                    Unfocused="OnEntryValidationNeeded"/>
+            </VerticalStackLayout>
+
+            <!-- Возраст -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Возраст" FontAttributes="Bold" TextColor="Black"/>
+                <Entry 
+                    Placeholder="Введите ваш возраст"
+                    Keyboard="Numeric"
+                    x:Name="AgeEntry"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    PlaceholderColor="Gray"
+                    Unfocused="OnEntryValidationNeeded"/>
+            </VerticalStackLayout>
+
+            <!-- Цель -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Ваша цель" FontAttributes="Bold" TextColor="Black"/>
+
+                <RadioButton 
+                    Content="Набор веса"
+                    x:Name="GainWeightRadio"
+                    GroupName="GoalGroup"
+                    TextColor="Black"/>
+
+                <RadioButton 
+                    Content="Поддержание веса"
+                    x:Name="MaintainWeightRadio"
+                    GroupName="GoalGroup"
+                    IsChecked="True"
+                    TextColor="Black"/>
+
+                <RadioButton 
+                    Content="Сброс веса"
+                    x:Name="LoseWeightRadio"
+                    GroupName="GoalGroup"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+
+            <!-- Пол -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Пол" FontAttributes="Bold" TextColor="Black"/>
+
+                <RadioButton 
+                    Content="Мужской"
+                    x:Name="RadioMale"
+                    GroupName="GenderGroup"
+                    TextColor="Black"/>
+
+                <RadioButton 
+                    Content="Женский"
+                    x:Name="RadioFemale"
+                    GroupName="GenderGroup"
+                    TextColor="Black"/>
+            </VerticalStackLayout>
+
+            <!-- Уровень активности -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Уровень активности" FontAttributes="Bold" TextColor="Black"/>
+                <Picker x:Name="ActivityPicker"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Title="Выберите уровень активности"/>
+            </VerticalStackLayout>
+
+            <!-- Кнопка сохранения -->
+            <Button 
+                Text="Сохранить настройки"
+                Clicked="OnSaveClicked"
+                HorizontalOptions="Fill"
+                BackgroundColor="#6200EE" 
+                TextColor="White"
+                Margin="0,20,0,0"/>
+
+                <!-- Новая кнопка генерации диеты -->
+                <Button 
+                Text="Сгенерировать диету"
+                Clicked="OnGenerateDietClicked"
+                HorizontalOptions="Fill"
+                BackgroundColor="#03DAC6"
+                    TextColor="Black"
+                Margin="0,10,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

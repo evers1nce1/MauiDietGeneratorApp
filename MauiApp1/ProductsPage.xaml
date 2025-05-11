@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.ProductsPage"
+             BackgroundColor="White">
+
+    <Grid>
+
+        <!-- Левая панель меню -->
+        <Grid x:Name="LeftMenu"
+              WidthRequest="200"
+              BackgroundColor="Black"
+              HorizontalOptions="Start"
+              TranslationX="-200"
+              ZIndex="2">
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <Button Text="Продукты"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        Clicked="OnProductsClicked"/>
+                <Button Text="Диеты"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        Clicked="OnRecipesClicked"/>
+                <Button Text="Рецепты"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        Clicked="OnRecipesGeneratorClicked"/>
+                <Button Text="Настройки"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        Clicked="OnAppSettingsClicked"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Основной контент -->
+        <Grid x:Name="MainContent"
+              RowDefinitions="Auto,*"
+              ColumnDefinitions="*,Auto"
+              ZIndex="1">
+
+            <!-- Шапка -->
+            <Grid BackgroundColor="#6200EE"
+                HeightRequest="60"
+                  Grid.Row="0"
+                  ColumnDefinitions="Auto,*,Auto"
+                  ColumnSpan="2"
+                  Padding="10,0">
+
+                <Button Text="☰"
+                        Grid.Column="0"
+                        WidthRequest="40"
+                        BackgroundColor="Transparent"
+                        FontSize="30"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        Clicked="OnMenuClicked"/>
+
+                <SearchBar x:Name="ProductSearchBar"
+                           Grid.Column="1"
+                           Placeholder="Поиск продуктов..."
+                           Margin="10,0"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           SearchButtonPressed="OnSearchPressed"/>
+
+                <Button Text="+" 
+                        Grid.Column="2"
+                        WidthRequest="40"
+                        BackgroundColor="Transparent"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        Clicked="OnAddProductClicked"/>
+            </Grid>
+
+            <!-- Список продуктов -->
+            <CollectionView x:Name="ProductsCollectionView"
+                            ItemsLayout="VerticalList"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Margin="10"
+                            SelectionMode="None"
+                            BackgroundColor="White">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid Padding="10"
+                                  BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding Name}"
+                                       FontSize="20"
+                                       VerticalOptions="Center"
+                                       TextColor="Black">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnProductTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <ImageButton Source="remove.png"
+                                             Grid.Column="1"
+                                             WidthRequest="30"
+                                             HeightRequest="30"
+                                             BackgroundColor="Transparent"
+                                             VerticalOptions="Center"
+                                             Clicked="OnRemoveClicked"
+                                             CommandParameter="{Binding .}"/>
+                            </Grid>
+
+                            <StackLayout IsVisible="{Binding IsExpanded}"
+                                         Padding="10"
+                                         BackgroundColor="White">
+                                <Label FontSize="14" TextColor="Grey">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="КБЖУ: {0}ккал/{1}г/{2}г/{3}г | Вес {4} г | {5}">
+                                            <Binding Path="Calories" />
+                                            <Binding Path="Proteins" />
+                                            <Binding Path="Fats" />
+                                            <Binding Path="Carbs" />
+                                            <Binding Path="Weight" />
+                                            <Binding Path="Category" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="50" Color="White"/>
+                </CollectionView.Footer>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

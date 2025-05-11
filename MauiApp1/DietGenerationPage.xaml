@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.DietGenerationPage"
+             Title="Генерация диеты"
+             BackgroundColor="White">
+
+    <ScrollView BackgroundColor="White">
+        <StackLayout Padding="20" Spacing="15" BackgroundColor="White">
+            <ActivityIndicator x:Name="LoadingIndicator" IsRunning="False" Color="#512BD4"/>
+
+            <!-- Информация о настройках -->
+            <Frame BorderColor="#EEEEEE" BackgroundColor="#FAFAFA" Padding="15">
+                <StackLayout>
+                    <Label Text="Параметры диеты" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+                    <Label x:Name="GoalLabel" FontSize="16" TextColor="#333333"/>
+                    <Label x:Name="CaloriesLabel" FontSize="16" TextColor="#333333"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Результат -->
+            <StackLayout x:Name="ResultLayout" IsVisible="False" Spacing="10" BackgroundColor="White">
+                <Label Text="Ваш план питания:" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+
+                <StackLayout x:Name="MealsStack" Spacing="15" BackgroundColor="White"/>
+
+                <Button Text="Сохранить план" 
+                        Clicked="OnSaveClicked"
+                        BackgroundColor="#03DAC6"
+                        TextColor="Black"
+                        Margin="0,20,0,0"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

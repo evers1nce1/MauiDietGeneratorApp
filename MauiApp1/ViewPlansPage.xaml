@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.ViewPlansPage"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+
+            <Label Text="Сохраненные диеты"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
+
+            <CollectionView x:Name="PlansCollectionView"
+                           VerticalOptions="FillAndExpand" 
+                HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=Height}"
+                ItemsUpdatingScrollMode="KeepLastItemInView">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Margin="5" Padding="10" CornerRadius="10" BackgroundColor="White">
+                            <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+                                    <Label Text="{Binding CreatedDate, StringFormat='Создан: {0:dd MMM yyyy HH:mm}'}" FontSize="14" TextColor="Black"/>
+                                    <Label Text="{Binding TotalCalories, StringFormat='Калории: {0:F0} ккал'}" FontSize="14" TextColor="Black"/>
+                                </VerticalStackLayout>
+                                <ImageButton Source="remove.png"
+                                             Grid.Column="1"
+                                             WidthRequest="30"
+                                             HeightRequest="30"
+                                             BackgroundColor="Transparent"
+                                             HorizontalOptions="End"
+                                             VerticalOptions="Center"
+                                             Clicked="OnRemoveClicked"
+                                             CommandParameter="{Binding .}" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPlanTapped" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="50" Color="White"/>
+                </CollectionView.Footer>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
